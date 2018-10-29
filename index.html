@@ -5,81 +5,85 @@
 <!-- including sheet js-->
 <script lang="javascript" src="dist/xlsx.full.min.js"></script>
 
-<!-- rendering library-->
+<!-- rendering chart library-->
 <script lang="javascript" src="dist/moment.js"></script>
 <script lang="javascript" src="dist/Chart.js"></script>
 
+<!-- jquery stuff -->
+<script lang="javascript" src="dist/jquery-3.3.1.min.js"></script>
+<script lang="javascript" src="dist/jquery.csv.js"></script>
+
+
 
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
+<meta charset="UTF-8">
+
 <!-- fabric include -->
 <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.1/css/fabric.min.css">
 <title>SPMT-RR</title>
+
+
 </head>
 <body>
 
 
-
-
 <!--TEST PURPOSE -->
 <h1>SPMT Report Reader</h1>
+<!--
 <p>This can only get better!</p>
 <p>A change from Roshane</p>
 <p>This is my push directly from VSCode</p>
+-->
+
+
 <!-- this is using fabrict react-->
-<p class="ms-font-l ms-fontColor-tealDark ms-fontColor-themePrimary--hover ms-bgColor-neutralTertiary">playing with colors</p>
+<!-- <p class="ms-font-l ms-fontColor-tealDark ms-fontColor-themePrimary--hover ms-bgColor-neutralTertiary">playing with colors</p>
 <span class="ms-font-su ms-fontColor-themePrimary">Big blue text</span>
+-->
 
-<!--test-->
-<div>test button </div>
+<!--test button-->
+<!-- <div>test button </div>
 <div id="like_button_container"></div>
+-->
 
-<!-- Rendering grahp-->
+
+<!-- test rendering CSV content -->
+<!--
+<div id="tabs-3" aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display: block;">
+        
+        <h4>Input Data:</h4>
+        <textarea id="input2" style="height:150px;"> Source,Destination,Status </textarea>
+        <input id="run2" type="button" value="Run">
+        <hr>
+        <h4>Result:</h4>
+        <div class="result">
+          <table id="result2" border="1"><tbody><tr>
+  
+  </tr>
+  </tbody></table>
+        </div>
+      </div>
+-->
+<!-- test 2 rendering csv-->
+
+<div id="dvImportSegments" class="fileupload ">
+        
+            <legend>Upload your CSV File</legend>
+                <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" />
+       
+    </div>
+
+
+
+
+
+
+    <!-- Rendering grahp-->
 
 <div>test Rendering graph using chart.js </div>
 <canvas id="myChart" width="400" height="400"></canvas>
-<script>
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        }
-    }
-});
-</script>
-
-
-
 
 
 
@@ -88,11 +92,98 @@ var myChart = new Chart(ctx, {
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <!-- Load our React component. -->
 <script src="test_button.js"></script>
+<script src="CSVread.js"></script>
+
+<!-- script to load a CSV -->
+<script type="text/javascript">  
+    $(document).ready(function() 
+    {
+
+    // The event listener for the file upload
+    document.getElementById('txtFileUpload').addEventListener('change', upload, false);
+
+    // Method that checks that the browser supports the HTML5 File API
+    function browserSupportFileUpload() {
+        var isCompatible = false;
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+        isCompatible = true;
+        }
+        return isCompatible;
+    }
+
+    // Method that reads and processes the selected file
+    function upload(evt) 
+    {
+        if (!browserSupportFileUpload()) 
+        {
+            alert('The File APIs are not fully supported in this browser!');
+        } 
+        else 
+        {
+            var data = null;
+            var file = evt.target.files[0];
+            var reader = new FileReader();
+            reader.readAsText(file);
+            reader.onload = function(event) {
+                var csvData = event.target.result;
+                data = $.csv.toArrays(csvData);
+                if (data && data.length > 0) {
+                    alert('Imported -' + data.length + '- rows successfully!');
+                } else {
+                    alert('No data to import!');
+                }
+            };
+            reader.onerror = function() {
+                alert('Unable to read ' + file.fileName);
+            };
+        }
+    }
+    }); 
+    </script>
 
 
 
-
-
+<!-- script that drag a graph -->
+<script>
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero:true
+                        }
+                    }]
+                }
+            }
+        });
+</script>
+        
 
 </body>
 </html>

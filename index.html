@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 
+<!-- Load React. -->
+
 <!-- including sheet js-->
 <script lang="javascript" src="dist/xlsx.full.min.js"></script>
 
@@ -11,12 +13,25 @@
 <title>SPMT-RR</title>
 </head>
 <body>
+<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+<!-- Load our React component. -->
+<script src="test_button.js"></script>
 
+
+
+<!--TEST PURPOSE -->
 <h1>SPMT Report Reader</h1>
 <p>This can only get better!</p>
 <p>This is my push directly from VSCode</p>
+<!-- this is using fabrict react-->
 <p class="ms-font-l ms-fontColor-tealDark ms-fontColor-themePrimary--hover ms-bgColor-neutralTertiary">playing with colors</p>
 <span class="ms-font-su ms-fontColor-themePrimary">Big blue text</span>
+
+<!--test-->
+<div id="test_button_container"></div>
+
 
 </body>
 </html>

@@ -121,7 +121,5 @@ function generateTable(data) {
     };
     
     return html;
-  }
-  function fourtyTwo() {
-    alert('Reticulating Splines...');
   };
+  

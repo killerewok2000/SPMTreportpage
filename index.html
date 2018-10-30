@@ -74,12 +74,13 @@
         max-width: 100%;
         max-height: 400px;
         overflow: auto;
+        clear: both;
     }
 
     .onethird {
         max-height: 400px;
         max-width: 33%;
-        min-width: 200px;
+        min-width: 300px;
         float: left;
     }
 
@@ -91,31 +92,17 @@
     <legend>Upload your SummaryReport.CSV File here</legend>
     <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" />   
 </div>
-<!-- Rendering grahp-->
-<!--<div>test Rendering chart using chart.js </div>-->
-<canvas id="piechartStatus" width="100" height="100"></canvas>
-<canvas id="myChart" width="100" height="100"></canvas>
-
-<div></div>
-<div></div>
-<!--<div>test Rendering table using chart.js </div>-->
-<table id="result2" border="1"></table>
-
-<div>test Rendering chart using chart.js </div>
-<canvas id="myChart" width="400" height="400"></canvas>
-<div>Average Throughput</div>
-<p id="throughput"></p>
-
-
 
 <!-- Rendering grahp-->
-<div class="fullwidth">
-    <table id="result2" border="1"></table>
+
+<div class="onethird">
+    <h2>Tasks by status</h2>
+    <canvas id="piechartStatus" height="400"></canvas>
 </div>
 
 <div class="onethird">
-    <h2>Tasks by Status</h2>
-    <canvas id="myChart" height="400"></canvas>
+    <h2>Tasks by status</h2>
+    <canvas id="myChart" width="400" height="400"></canvas>
 </div>
 
 <div class="onethird">
@@ -123,6 +110,9 @@
     <p id="throughput"></p>
 </div>
 
+<div class="fullwidth">
+    <table id="result2" border="1"></table>
+</div>
 
 <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>

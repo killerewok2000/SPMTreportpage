@@ -90,8 +90,8 @@ function setupgraph1(data) {
             labels: ["Completed", "In progress", "Failed"],
             datasets: [{
                 label: "Status of Tasks",
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
+                backgroundColor: ['#107c10','#ffce56' ,'#e81123'],
+                borderColor: ['#004b1c','#ffb900' ,'#a80000'],
                 data: status,
             }]
         },

@@ -70,7 +70,7 @@
 
 <div id="dvImportSegments" class="fileupload ">
         
-            <legend>Upload your CSV File</legend>
+            <legend>Upload your SummaryReport.CSV File here</legend>
                 <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" />
        
     </div>
@@ -82,7 +82,9 @@
 
     <!-- Rendering grahp-->
 
-<div>test Rendering graph using chart.js </div>
+<div>test Rendering table using chart.js </div>
+<table id="result2" border="1"></table>
+<div>test Rendering chart using chart.js </div>
 <canvas id="myChart" width="400" height="400"></canvas>
 
 
@@ -92,6 +94,16 @@
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <!-- Load our React component. -->
 <script src="test_button.js"></script>
+<<<<<<< HEAD
+<!-- <script src="CSVread.js"></script>-->
+<script src="firstgraph.js"></script>
+
+
+
+
+
+
+=======
 <script src="CSVread.js"></script>
 
 <!-- script to load a CSV -->
@@ -129,6 +141,8 @@
                 data = $.csv.toArrays(csvData);
                 if (data && data.length > 0) {
                     alert('Imported -' + data.length + '- rows successfully!');
+                    alert(csvData);
+                    processData(csvData);
                 } else {
                     alert('No data to import!');
                 }
@@ -183,6 +197,7 @@
             }
         });
 </script>
+>>>>>>> d0e93b82aeedcff777dbf556ca860fe3fedb1de4
         
 
 </body>

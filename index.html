@@ -14,14 +14,23 @@
 <script lang="javascript" src="dist/jquery.csv.js"></script>
 
 
-
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
 <meta charset="UTF-8">
 
 <!-- fabric include -->
-<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/9.6.1/css/fabric.min.css">
+<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.min.css" />
+<link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/css/fabric.components.min.css" />
+<script src="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-js/1.4.0/js/fabric.min.js"></script>
+
+<script type="text/javascript">
+    var TableElements = document.querySelectorAll(".ms-Table");
+    for (var i = 0; i < TableElements.length; i++) {
+      new fabric['Table'](TableElements[i]);
+    }
+</script>
+
 <title class="ms-font-su">SPMT-RR</title>
 
 
@@ -76,7 +85,9 @@
 
     .fullwidth {
         max-width: 100%;
-        max-height: 400px;
+        /*max-height: 1000px;*/
+        margin-top: 20px;
+        margin-bottom: 35px;
         overflow: auto;
         clear: both;
     }
@@ -116,7 +127,7 @@
 </div>
 
 <div class="fullwidth">
-    <table id="result2" border="1"></table>
+    <table id="result2"  class="ms-Table"></table>
 </div>
 
 <!-- Note: when deploying, replace "development.js" with "production.min.js". -->

@@ -68,26 +68,46 @@
 -->
 <!-- test 2 rendering csv-->
 
-<div id="dvImportSegments" class="fileupload ">
-        
-            <legend>Upload your SummaryReport.CSV File here</legend>
-                <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" />
-       
-    </div>
+<style>
+
+    .fullwidth {
+        max-width: 100%;
+        max-height: 400px;
+        overflow: auto;
+    }
+
+    .onethird {
+        max-height: 400px;
+        max-width: 33%;
+        min-width: 200px;
+        float: left;
+    }
+
+</style>
 
 
+
+<div id="dvImportSegments" class="fileupload fullwidth">
+    <legend>Upload your SummaryReport.CSV File here</legend>
+    <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" />   
+</div>
 
 
 
 <!-- Rendering grahp-->
+<div class="fullwidth">
+    <table id="result2" border="1"></table>
+</div>
 
-<div>test Rendering table using chart.js </div>
-<table id="result2" border="1"></table>
-<div>test Rendering chart using chart.js </div>
-<canvas id="myChart" width="400" height="400"></canvas>
-<div>Average Throughput</div>
-<p id="throughput"></p>
+<div class="onethird">
+    <h2>Tasks by Status</h2>
+    <canvas id="myChart" height="400"></canvas>
+</div>
 
+<div class="onethird">
+    <h2>Average Throughput</h2>
+    <p id="throughput"></p>
+</div>
 
 
 <!-- Note: when deploying, replace "development.js" with "production.min.js". -->

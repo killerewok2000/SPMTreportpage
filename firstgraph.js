@@ -140,5 +140,5 @@ function generateAvgThroughput(data) {
         unit = "MB per hour";
     }
 
-    return("The average throughput of these " + tasks + " tasks was " + avg + " " + unit);
+    return("These " + tasks + " tasks averaged " + avg.toFixed(2) + unit);
 }

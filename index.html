@@ -129,6 +129,8 @@
                 data = $.csv.toArrays(csvData);
                 if (data && data.length > 0) {
                     alert('Imported -' + data.length + '- rows successfully!');
+                    alert(csvData);
+                    processData(csvData);
                 } else {
                     alert('No data to import!');
                 }

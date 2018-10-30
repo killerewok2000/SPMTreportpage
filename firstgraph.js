@@ -39,6 +39,8 @@ function upload(evt)
                 $('#result2').empty();
                 $('#result2').html(html);
                 
+                //average throughput
+                $('#throughput').html(generateAvgThroughput(data));
             } else {
                 alert('No data to import!');
             }
@@ -139,3 +141,27 @@ function generateTable(data) {
     return html;
   };
   
+function generateAvgThroughput(data) {
+    var html = '';
+    if(typeof(data[0]) === 'undefined') {
+        return null;
+    }
+
+    var total = 0.0;
+    var tasks = 0;
+    for (var i=1; i<data.length; i++) {
+        if (data[i][2] == 'Completed') {
+            total += parseFloat(data[i][16]);
+            tasks++;
+        }
+    }
+
+    var unit = "GB per hour";
+    var avg = total / tasks;
+    if (avg < 1) {
+        avg *= 1000;
+        unit = "MB per hour";
+    }
+
+    return("The average throughput of these " + tasks + " tasks was " + avg + " " + unit);
+}

@@ -32,8 +32,10 @@ function upload(evt)
             var csvData = event.target.result;
             data = $.csv.toArrays(csvData);
             if (data && data.length > 0) {
-                alert('Imported -' + data.length + '- rows successfully!');
+                //alert('Imported -' + data.length + '- rows successfully!');
                 var html = generateTable(data);
+                setupgraph1(data);
+                
                 $('#result2').empty();
                 $('#result2').html(html);
                 
@@ -49,37 +51,58 @@ function upload(evt)
 }); 
     
 
-var succes = [2];
 
 
-var ctx = document.getElementById("myChart").getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Succes"],
-        datasets: [{
-            label: 'Success',
-            data: succes,
-            backgroundColor: [
-                'rgba(75, 192, 192, 0.2)'
-            ],
-            borderColor: [
-                'rgba(75, 192, 192, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
+
+
+
+//function to setup graph of Status
+function setupgraph1(data) {
+    //variable for status Completed,In progress, Failed
+    var status = [0,0,0]; 
+    for(var row in data) {
+       if( data[row][2]== 'Failed')
+        {
+            status[2]++;
         }
-    }
-});
+        if(data[row][2]== 'In progress')
+        {
+            status[1]++ ;
+        }
+        if(data[row][2]== 'Completed')
+        {
+            status[0]++ ;
+        }
 
+        //html += '<tr>\r\n';
+       // for(var item in data[row]) {
+         // html += '<td>' + data[row][item] + '</td>\r\n';
+        //}
+        //html += '</tr>\r\n';
+    }
+      //alert('successcount ' + status[0] + ' in progress '+ status[1] +' successcount '+ status[2]);
+      var ctx = document.getElementById("myChart").getContext('2d');
+      var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'horizontalBar',
+      
+          // The data for our dataset
+          data: {
+              labels: ["Completed", "In progress", "Failed"],
+              datasets: [{
+                  label: "My First dataset",
+                  backgroundColor: 'rgb(255, 99, 132)',
+                  borderColor: 'rgb(255, 99, 132)',
+                  data: status,
+              }]
+          },
+      
+          // Configuration options go here
+          options: {}
+      });
+      
+
+};
 
 //for building table
 function generateTable(data) {

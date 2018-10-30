@@ -124,4 +124,4 @@ function generateTable(data) {
   }
   function fourtyTwo() {
     alert('Reticulating Splines...');
-  }
+  };

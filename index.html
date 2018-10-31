@@ -117,7 +117,7 @@
     <legend>Upload your SummaryReport.CSV File here</legend>
     <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" />   
 </div>
-
+<pre id="console">test</pre>
 
 <!-- Rendering grahp-->
 
@@ -140,13 +140,19 @@
     <table id="result2"  class="ms-Table"></table>
 </div>
 
+
+
+
+
+
+<script type="text/javascript" src="dist/polyfill.js"></script>
 <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <!-- Load our React component. -->
 <!--<script src="test_button.js"></script>-->
 <script src="firstgraph.js"></script>
-<script src="dist/dropzone.js"></script>
+
 <script src="multiupload.js"></script>
 <script src="CSVread.js"></script>
        

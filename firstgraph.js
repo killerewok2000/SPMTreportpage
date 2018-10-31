@@ -1,3 +1,10 @@
+var status = [0,0,0];
+
+var tempdata = null;
+
+function resetstatus(data) { 
+    status = [0,0,0];
+};
 
 $(document).ready(function() 
 {
@@ -34,8 +41,8 @@ function upload(evt)
             if (data && data.length > 0) {
                 //alert('Imported -' + data.length + '- rows successfully!');
                 var html = generateTable(data);
+                incrementstatus(data);
                 setupgraph1(data);
-                
                 $('#result2').empty();
                 $('#result2').html(html);
                 
@@ -49,39 +56,46 @@ function upload(evt)
             alert('Unable to read ' + file.fileName);
         };
     }
+    
 };
 }); 
-    
 
+
+function incrementstatus(data) {
+
+    for(var row in data) {
+        
+        if( data[row][2]== 'Failed')
+         {
+             status[2]++;
+         }
+         if(data[row][2]== 'In progress')
+         {
+             status[1]++ ;
+         }
+         if(data[row][2]== 'Completed')
+         {
+             status[0]++ ;
+         }
+}
+};
 
 
 
 
 
 //function to setup graph of Status
-function setupgraph1(data) {
+function setupgraph1() {
     //variable for status Completed,In progress, Failed
-    var status = [0,0,0]; 
-    for(var row in data) {
-       if( data[row][2]== 'Failed')
-        {
-            status[2]++;
-        }
-        if(data[row][2]== 'In progress')
-        {
-            status[1]++ ;
-        }
-        if(data[row][2]== 'Completed')
-        {
-            status[0]++ ;
-        }
+    
+   
 
         //html += '<tr>\r\n';
        // for(var item in data[row]) {
          // html += '<td>' + data[row][item] + '</td>\r\n';
         //}
         //html += '</tr>\r\n';
-    }
+    
       //alert('successcount ' + status[0] + ' in progress '+ status[1] +' successcount '+ status[2]);
       var ctx = document.getElementById("piechartStatus").getContext('2d');
       var piechartStatus = new Chart(ctx, {
@@ -118,6 +132,7 @@ function setupgraph1(data) {
           options: {}
       });
       
+
 
 };
 

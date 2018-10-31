@@ -77,12 +77,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
         e.preventDefault();
 
         e.target.className = '';
-
+        alert("start loop ");
         
 
         var iterateFilesAndDirs = function(filesAndDirs, path) {
             for (var i = 0; i < filesAndDirs.length; i++) {
-                //alert("start loop "+ filesAndDirs.length + " now at " + i);
+                alert("start loop "+ filesAndDirs.length + " now at " + i);
                 if (typeof filesAndDirs[i].getFilesAndDirectories === 'function') {
                     var path = filesAndDirs[i].path;
                     //alert("recusion"+ path + filesAndDirs[i]);

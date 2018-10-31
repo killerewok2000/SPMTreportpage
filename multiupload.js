@@ -1,7 +1,5 @@
 //  [Migrated, failed, scanned, ]
 var filecount = [0,0,0];
-var status = [0,0,0];
-
 
 function toggleDisplay(id) {
     var el = document.getElementById(id);
@@ -29,29 +27,29 @@ var uploadFile = function(file, path) {
     } 
     else 
     {
-        var datatemp = null;
-        var filetemp = file.target.files[0];
+        var data = null;
+        var file = evt.target.files[0];
         var reader = new FileReader();
-        reader.readAsText(filetemp);
+        reader.readAsText(file);
         reader.onload = function(event) {
             var csvData = event.target.result;
-            datatemp = $.csv.toArrays(csvData);
-            if (datatemp && datatemp.length > 0) {
-                alert('Imported -' + datatemp.length + '- rows successfully!');
-                var html = generateTable(datatemp);
-                setupgraph1(datatemp);
+            data = $.csv.toArrays(csvData);
+            if (data && data.length > 0) {
+                alert('Imported -' + data.length + '- rows successfully!');
+                var html = generateTable(data);
+                setupgraph1(data);
                 
                 $('#result2').empty();
                 $('#result2').html(html);
                 
                 //average throughput
-                $('#throughput').html(generateAvgThroughput(datatemp));
+                $('#throughput').html(generateAvgThroughput(data));
             } else {
                 alert('No data to import!');
             }
         };
         reader.onerror = function() {
-            alert('Unable to read ' + filetemp.fileName);
+            alert('Unable to read ' + file.fileName);
         };
     }
 };
@@ -79,12 +77,12 @@ document.addEventListener('DOMContentLoaded', function(event) {
         e.preventDefault();
 
         e.target.className = '';
-        //alert("start loop ");
+        alert("start loop ");
         
 
         var iterateFilesAndDirs = function(filesAndDirs, path) {
             for (var i = 0; i < filesAndDirs.length; i++) {
-                //alert("start loop "+ filesAndDirs.length + " now at " + i);
+                alert("start loop "+ filesAndDirs.length + " now at " + i);
                 if (typeof filesAndDirs[i].getFilesAndDirectories === 'function') {
                     var path = filesAndDirs[i].path;
                     //alert("recusion"+ path + filesAndDirs[i]);
@@ -122,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 //function to setup graph of Status
 function setupgraph1(data) {
     //variable for status Completed,In progress, Failed
-    status = [0,0,0]; 
+    var status = [0,0,0]; 
     for(var row in data) {
        if( data[row][2]== 'Failed')
         {

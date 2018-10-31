@@ -42,7 +42,9 @@ function upload(evt)
                 //alert('Imported -' + data.length + '- rows successfully!');
                 var html = generateTable(data);
                 incrementstatus(data);
+                tasksBySizeChart(data);
                 setupgraph1(data);
+
                 $('#result2').empty();
                 $('#result2').html(html);
                 
@@ -81,6 +83,50 @@ function incrementstatus(data) {
 };
 
 
+function tasksBySizeChart(data) {
+
+    var data2 = data.slice(0);
+    data2.sort(function(a,b){
+        return b[4] - a[4];
+    });
+
+    var sizeData = [];
+    sizeData[0] = [];
+    sizeData[1] = []; 
+
+    for(var row in data2) {
+        if (row==0) continue;
+        if (row>10) break;
+        if (!sizeData[0][row]) sizeData[0][row] = 0;
+        sizeData[0][row] += parseFloat(data2[row][4]);
+        sizeData[1][row] = data2[row][0];
+    }
+
+    sizeData[0] = sizeData[0].slice(1);
+    sizeData[1] = sizeData[1].slice(1);
+
+    var ctx = document.getElementById("tasksBySize").getContext('2d');
+      var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'bar',
+      
+          // The data for our dataset
+          data: {
+              labels: sizeData[1],
+                datasets: [{
+                  label: "Task size (GB)",
+                  backgroundColor: '#0078d4',
+                  borderColor: '#0078d4',
+                  data: sizeData[0],
+              }]
+          },
+      
+          // Configuration options go here
+          options: {}
+      });
+
+
+}
 
 
 
@@ -132,7 +178,6 @@ function setupgraph1() {
           options: {}
       });
       
-
 
 };
 

@@ -12,7 +12,7 @@ function browserSupportFileUpload() {
     isCompatible = true;
     }
     return isCompatible;
-}
+};
 
 // Method that reads and processes the selected file
 function upload(evt) 
@@ -49,7 +49,7 @@ function upload(evt)
             alert('Unable to read ' + file.fileName);
         };
     }
-}
+};
 }); 
     
 
@@ -179,4 +179,4 @@ function generateAvgThroughput(data) {
     }
 
     return("These " + tasks + " tasks averaged " + avg.toFixed(2) + unit);
-}
+};

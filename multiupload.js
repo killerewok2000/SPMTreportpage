@@ -1,5 +1,5 @@
-$(document).ready(function() 
-{
+//  [Migrated, failed, scanned, ]
+var filecount = [0,0,0];
 
 function toggleDisplay(id) {
     var el = document.getElementById(id);
@@ -7,7 +7,7 @@ function toggleDisplay(id) {
     el.style.display = el.style.display === 'block' ? 'none' : 'block';
 
     return false;
-}
+};
 // Method that checks that the browser supports the HTML5 File API
 function browserSupportFileUpload() {
     var isCompatible = false;
@@ -15,7 +15,7 @@ function browserSupportFileUpload() {
     isCompatible = true;
     }
     return isCompatible;
-}
+};
 
 var uploadFile = function(file, path) {
     alert('uploaded' +  path + "/" + file.name );
@@ -35,7 +35,7 @@ var uploadFile = function(file, path) {
             var csvData = event.target.result;
             data = $.csv.toArrays(csvData);
             if (data && data.length > 0) {
-                //alert('Imported -' + data.length + '- rows successfully!');
+                alert('Imported -' + data.length + '- rows successfully!');
                 var html = generateTable(data);
                 setupgraph1(data);
                 
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
                 } else {
                     if(filesAndDirs[i].name.includes("SummaryReport"))
                     {
-                    alert("trying to upload"+ filesAndDirs[i]);    
+                    //alert("trying to upload"+ filesAndDirs[i]);    
                     uploadFile(filesAndDirs[i], path);
                     }
                     //alert("trying to upload"+ filesAndDirs[i]);
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         }
     });
 });
-}); 
+ 
 
 
 
@@ -238,4 +238,4 @@ function generateAvgThroughput(data) {
     }
 
     return("These " + tasks + " tasks averaged " + avg.toFixed(2) + unit);
-}
+};

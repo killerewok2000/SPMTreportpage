@@ -305,12 +305,12 @@ function generateAvgThroughput(data) {
         }
     }
 
-    var unit = "GB per hour";
+    var unit = "GB/h";
     var avg = total / tasks;
     if (avg < 1) {
         avg *= 1000;
-        unit = "MB per hour";
+        unit = "MB/h";
     }
 
-    return("These " + tasks + " tasks averaged " + avg.toFixed(2) + unit);
+    return(avg.toFixed(2) + unit);
 };

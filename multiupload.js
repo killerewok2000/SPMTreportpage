@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
         e.target.className = '';
 
         var uploadFile = function(file, path) {
-            alert('uploaded' +  path + "/" + file.value );
+            alert('uploaded' +  path + "/" + file.name );
             // handle file uploading
         };
 
@@ -47,8 +47,11 @@ document.addEventListener('DOMContentLoaded', function(event) {
                         //alert("recusion"+ path);
                     });
                 } else {
-                    
+                    if(filesAndDirs[i].name.includes("SummaryReport"))
+                    {
+                    alert("trying to upload"+ filesAndDirs[i]);    
                     uploadFile(filesAndDirs[i], path);
+                    }
                     //alert("trying to upload"+ filesAndDirs[i]);
                 }
             }

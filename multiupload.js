@@ -27,10 +27,13 @@ function uploadSummaryReport(evt)
     } 
     else 
     {
+        
         var data = null;
+        alert(evt.getAsText());
         var file = evt.target.files[0];
         var reader = new FileReader();
         reader.readAsText(file);
+        alert(file.getAsText());
         reader.onload = function(event) {
             var csvData = event.target.result;
             data = $.csv.toArrays(csvData);

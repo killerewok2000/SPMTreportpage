@@ -30,25 +30,25 @@ document.addEventListener('DOMContentLoaded', function(event) {
         e.target.className = '';
 
         var uploadFile = function(file, path) {
-            alert('uploaded'+  path + file );
+            alert('uploaded' +  path + file );
             // handle file uploading
         };
 
         var iterateFilesAndDirs = function(filesAndDirs, path) {
             for (var i = 0; i < filesAndDirs.length; i++) {
-                alert("start loop "+ filesAndDirs.length + " now at " + i);
+                //alert("start loop "+ filesAndDirs.length + " now at " + i);
                 if (typeof filesAndDirs[i].getFilesAndDirectories === 'function') {
                     var path = filesAndDirs[i].path;
-                    alert("recusion"+ path + filesAndDirs[i]);
+                    //alert("recusion"+ path + filesAndDirs[i]);
                     // this recursion enables deep traversal of directories
                     filesAndDirs[i].getFilesAndDirectories().then(function(subFilesAndDirs) {
                         // iterate through files and directories in sub-directory
                         iterateFilesAndDirs(subFilesAndDirs, path);
-                        alert("recusion"+ path);
+                        //alert("recusion"+ path);
                     });
                 } else {
                     uploadFile(filesAndDirs[i], path);
-                    alert("trying to upload"+ filesAndDirs[i]);
+                    //alert("trying to upload"+ filesAndDirs[i]);
                 }
             }
         };
@@ -56,9 +56,9 @@ document.addEventListener('DOMContentLoaded', function(event) {
         // begin by traversing the chosen files and directories
         if ('getFilesAndDirectories' in e.dataTransfer) {
                 e.dataTransfer.getFilesAndDirectories().then(function(filesAndDirs) {
-                    alert(filesAndDirs);
+                //alert(filesAndDirs);
                 iterateFilesAndDirs(filesAndDirs, '/');
-                alert("uploaded fully");
+                //alert("uploaded fully");
             });
         }
     });

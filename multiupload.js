@@ -142,11 +142,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
                     //alert("trying to upload"+ filesAndDirs[i]);    
                     uploadFile(filesAndDirs[i], path);
                     }
-                    if(filesAndDirs[i].name.includes("ItemReport"))
-                    {
-                    //alert("trying to upload"+ filesAndDirs[i]);    
-                    uploadFile(filesAndDirs[i], path);
-                    }
+                    
                     //alert("trying to upload"+ filesAndDirs[i]);
                 }
             }

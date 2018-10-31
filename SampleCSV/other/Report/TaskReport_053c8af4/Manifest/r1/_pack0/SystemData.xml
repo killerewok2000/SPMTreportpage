@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SystemData xmlns="urn:deployment-systemdata-schema">
+  <SchemaVersion Version="15.0.0.0" Build="16.0.3111.1200" DatabaseVersion="11552" SiteVersion="15" ObjectsProcessed="9" />
+  <ManifestFiles>
+    <ManifestFile Name="Manifest.xml" />
+  </ManifestFiles>
+  <SystemObjects>
+    <SystemObject Id="06670dda-0291-4061-b6e0-f6c0cb392c51" Type="Web" Url="/teams/SPoMigrationtest1234" />
+    <SystemObject Id="129c5557-91ee-4309-8772-ead766980e80" Type="List" Url="/_catalog/users" />
+  </SystemObjects>
+</SystemData>

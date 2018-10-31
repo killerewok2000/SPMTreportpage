@@ -82,10 +82,9 @@
 
 
 <div id="dvImportSegments" class="fileupload fullwidth">
-    <legend>Upload your SummaryReport.CSV File here</legend>
+    <legend>Upload your SummaryReport.CSV and ItemReport.CSV File here</legend>
     <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" />   
 </div>
-
 
 <!-- Rendering grahp-->
 
@@ -103,6 +102,10 @@
     <h2 class="ms-font-xxl">Average Throughput</h2>
     <p id="throughput"></p>
 </div>
+<div class="onethird">
+    <h2 class="ms-font-xxl">ItemReport Status</h2>
+    <canvas id="ItemReportStatus"></canvas>
+</div>
 
 <div class="fullwidth">
     <table id="result2"  class="ms-Table"></table>
@@ -117,7 +120,7 @@
 <!-- Load our React component. -->
 
 <script src="firstgraph.js"></script>
-
+<!--<script src="itemreport.js"></script>-->
 <script src="multiupload.js"></script>
 <script src="CSVread.js"></script>
        

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ExportSettings xmlns="urn:deployment-exportsettings-schema" SiteUrl="http://sibourdatest.centralus.cloudapp.azure.com/sites/Poll/Engineering" FileLocation="C:\Users\bourd\AppData\Roaming\Microsoft\MigrationToolStorage\microsoft.com\WF_a410e0a3\TASK_053c8af4\r1\pack0\data" IncludeSecurity="All" SourceType="SharePoint">
+  <ExportObjects>
+    <DeploymentObject Id="a317d069-bc64-4313-822b-180386747730" Type="List" ParentId="06670dda-0291-4061-b6e0-f6c0cb392c51" />
+    <DeploymentObject Id="794c8b45-0225-4764-9ad2-6d4bdaeeb86a" Type="List" ParentId="06670dda-0291-4061-b6e0-f6c0cb392c51" />
+    <DeploymentObject Id="e4aa919a-b200-49cb-beca-4c7e0810321e" Type="List" ParentId="06670dda-0291-4061-b6e0-f6c0cb392c51" />
+  </ExportObjects>
+</ExportSettings>

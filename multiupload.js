@@ -32,6 +32,7 @@ var uploadFile = function(file, path) {
         var reader = new FileReader();
         reader.readAsText(fileupload);
         reader.onload = function(event) {
+            alert('Reading');
             var csvData = event.target.result;
             dataupload = $.csv.toArrays(csvData);
             if (dataupload && dataupload.length > 0) {

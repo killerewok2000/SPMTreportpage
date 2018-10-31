@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RootObjects xmlns="urn:deployment-rootobjectmap-schema">
+  <RootObject Id="a317d069-bc64-4313-822b-180386747730" Type="List" Url="/teams/SPoMigrationtest1234/Lists/Engineering Discussion" ParentId="06670dda-0291-4061-b6e0-f6c0cb392c51" WebUrl="/teams/SPoMigrationtest1234" IsDependency="false" />
+  <RootObject Id="794c8b45-0225-4764-9ad2-6d4bdaeeb86a" Type="List" Url="/teams/SPoMigrationtest1234/SiteAssets" ParentId="06670dda-0291-4061-b6e0-f6c0cb392c51" WebUrl="/teams/SPoMigrationtest1234" IsDependency="false" />
+  <RootObject Id="e4aa919a-b200-49cb-beca-4c7e0810321e" Type="List" Url="/teams/SPoMigrationtest1234/Shared Documents" ParentId="06670dda-0291-4061-b6e0-f6c0cb392c51" WebUrl="/teams/SPoMigrationtest1234" IsDependency="false" />
+</RootObjects>

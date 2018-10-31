@@ -38,43 +38,9 @@
 <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
 
 
-<!--TEST PURPOSE -->
+
 <h1>SPMT Report Reader</h1>
-<!--
-<p>This can only get better!</p>
-<p>A change from Roshane</p>
-<p>This is my push directly from VSCode</p>
--->
 
-
-<!-- this is using fabrict react-->
-<!-- <p class="ms-font-l ms-fontColor-tealDark ms-fontColor-themePrimary--hover ms-bgColor-neutralTertiary">playing with colors</p>
-<span class="ms-font-su ms-fontColor-themePrimary">Big blue text</span>
--->
-
-<!--test button-->
-<!-- <div>test button </div>
-<div id="like_button_container"></div>
--->
-
-
-<!-- test rendering CSV content -->
-<!--
-<div id="tabs-3" aria-labelledby="ui-id-3" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false" style="display: block;">
-        
-        <h4>Input Data:</h4>
-        <textarea id="input2" style="height:150px;"> Source,Destination,Status </textarea>
-        <input id="run2" type="button" value="Run">
-        <hr>
-        <h4>Result:</h4>
-        <div class="result">
-          <table id="result2" border="1"><tbody><tr>
-  
-  </tr>
-  </tbody></table>
-        </div>
-      </div>
--->
 <!-- test 2 rendering csv-->
 
 <style>
@@ -112,14 +78,13 @@
 
 
 <!-- drag and drop zone-->
-<div id="dropDiv" >Drag & drop your SPMT folder here!!!</div>
+<div id="dropDiv" >Drag & drop your SPMT folder here!!</div>
 
 
 <div id="dvImportSegments" class="fileupload fullwidth">
-    <legend>Upload your SummaryReport.CSV File here</legend>
+    <legend>Upload your SummaryReport.CSV and ItemReport.CSV File here</legend>
     <input type="file" name="File Upload" id="txtFileUpload" accept=".csv" />   
 </div>
-
 
 <!-- Rendering grahp-->
 
@@ -136,6 +101,10 @@
 <div class="onethird">
     <h2 class="ms-font-xxl">Average Throughput</h2>
     <p id="throughput"></p>
+</div>
+<div class="onethird">
+    <h2 class="ms-font-xxl">ItemReport Status</h2>
+    <canvas id="ItemReportStatus"></canvas>
 </div>
 
 <div class ="onethird">
@@ -154,10 +123,10 @@
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <!-- Load our React component. -->
-<!--<script src="test_button.js"></script>-->
-<script src="firstgraph.js"></script>
 
-<script src="multiupload.js"></script>
+<script src="firstgraph.js"></script>
+<!--<script src="itemreport.js"></script>-->
+<!--<script src="multiupload.js"></script>-->
 <script src="CSVread.js"></script>
        
 

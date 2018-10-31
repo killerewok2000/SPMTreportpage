@@ -1,0 +1,72 @@
+﻿TimeStamp:10/26/2018 5:02:06 PM Package#:[0] EventType:[JOBQUEUED] PackageID:[66911775-17ca-4a55-9f3e-d9f170737827] JobID:[ffac0149-c23e-4b58-9a2a-2d27d9bb3b2b] FilesCreated:0/5
+        Event:JobQueued
+        JobId:ffac0149-c23e-4b58-9a2a-2d27d9bb3b2b
+        Time:10/26/2018 17:02:06.317
+        SiteId:703611f9-8f95-48e0-95fb-9465a877daa3
+        DbId:d6867415-7c51-4256-8531-238f10ec6fee
+        TotalRetryCount:0
+        MigrationType:None
+        MigrationDirection:Import
+        CorrelationId:04389c9e-502b-0000-b1bd-8df2d3b6e949
+
+TimeStamp:10/26/2018 5:02:16 PM Package#:[0] EventType:[JOBLOGFILECREATE] PackageID:[66911775-17ca-4a55-9f3e-d9f170737827] JobID:[ffac0149-c23e-4b58-9a2a-2d27d9bb3b2b] FilesCreated:0/5
+        Event:JobLogFileCreate
+        JobId:ffac0149-c23e-4b58-9a2a-2d27d9bb3b2b
+        Time:10/26/2018 17:02:16.169
+        FileName:Import-ffac0149-c23e-4b58-9a2a-2d27d9bb3b2b-1.log
+        CorrelationId:06389c9e-907e-0000-b2f7-acb712e4bfe2
+
+TimeStamp:10/26/2018 5:02:16 PM Package#:[0] EventType:[JOBSTART] PackageID:[66911775-17ca-4a55-9f3e-d9f170737827] JobID:[ffac0149-c23e-4b58-9a2a-2d27d9bb3b2b] FilesCreated:0/5
+        Event:JobStart
+        JobId:ffac0149-c23e-4b58-9a2a-2d27d9bb3b2b
+        Time:10/26/2018 17:02:16.200
+        SiteId:703611f9-8f95-48e0-95fb-9465a877daa3
+        WebId:06670dda-0291-4061-b6e0-f6c0cb392c51
+        DBId:d6867415-7c51-4256-8531-238f10ec6fee
+        FarmId:bc34f4cd-49df-4c83-a228-e478eaf55df0
+        ServerId:a6209a6e-b4bb-4a9c-9823-09b261131a7c
+        SubscriptionId:ec63b09b-9748-47ba-9018-beeadd405204
+        TotalRetryCount:0
+        MigrationType:None
+        MigrationDirection:Import
+        CorrelationId:06389c9e-907e-0000-b2f7-acb712e4bfe2
+
+TimeStamp:10/26/2018 5:02:21 PM Package#:[0] EventType:[JOBPROGRESS] PackageID:[66911775-17ca-4a55-9f3e-d9f170737827] JobID:[ffac0149-c23e-4b58-9a2a-2d27d9bb3b2b] FilesCreated:0/5
+        Event:JobProgress
+        JobId:ffac0149-c23e-4b58-9a2a-2d27d9bb3b2b
+        Time:10/26/2018 17:02:21.279
+        FilesCreated:0
+        BytesProcessed:0
+        ObjectsProcessed:18
+        TotalExpectedSPObjects:9
+        TotalErrors:0
+        TotalWarnings:0
+        TotalRetryCount:0
+        MigrationType:None
+        MigrationDirection:Import
+        WaitTimeOnSqlThrottlingMilliseconds:0
+        CreatedOrUpdatedFileStatsBySize:{}
+        ObjectsStatsByType:{"SPUser":{"Count":8,"TotalTime":1654,"AccumulatedVersions":0,"ObjectsWithVersions":0},"SPGroup":{"Count":9,"TotalTime":804,"AccumulatedVersions":0,"ObjectsWithVersions":0},"SPFolder":{"Count":9,"TotalTime":1642,"AccumulatedVersions":0,"ObjectsWithVersions":0},"SPList":{"Count":1,"TotalTime":151,"AccumulatedVersions":0,"ObjectsWithVersions":0},"SPDocumentLibrary":{"Count":2,"TotalTime":186,"AccumulatedVersions":0,"ObjectsWithVersions":0},"SPFile":{"Count":5,"TotalTime":0,"AccumulatedVersions":0,"ObjectsWithVersions":0},"SPListItem":{"Count":1,"TotalTime":197,"AccumulatedVersions":0,"ObjectsWithVersions":0}}
+        TotalExpectedBytes:0
+        LastSPObjectId:19144664-0153-440c-a324-f17e7f150fed
+        CorrelationId:06389c9e-907e-0000-b2f7-acb712e4bfe2
+
+TimeStamp:10/26/2018 5:02:26 PM Package#:[0] EventType:[JOBEND] PackageID:[66911775-17ca-4a55-9f3e-d9f170737827] JobID:[ffac0149-c23e-4b58-9a2a-2d27d9bb3b2b] FilesCreated:5/5
+        Event:JobEnd
+        JobId:ffac0149-c23e-4b58-9a2a-2d27d9bb3b2b
+        Time:10/26/2018 17:02:26.122
+        FilesCreated:5
+        BytesProcessed:94044
+        ObjectsProcessed:30
+        TotalExpectedSPObjects:9
+        TotalErrors:0
+        TotalWarnings:0
+        TotalRetryCount:0
+        MigrationType:None
+        MigrationDirection:Import
+        WaitTimeOnSqlThrottlingMilliseconds:0
+        CreatedOrUpdatedFileStatsBySize:{"10-100K":{"Count":4,"TotalSize":89283,"TotalDownloadTime":100,"TotalCreationTime":1729},"1-10K":{"Count":1,"TotalSize":4761,"TotalDownloadTime":19,"TotalCreationTime":138}}
+        ObjectsStatsByType:{"SPUser":{"Count":8,"TotalTime":1654,"AccumulatedVersions":0,"ObjectsWithVersions":0},"SPGroup":{"Count":9,"TotalTime":804,"AccumulatedVersions":0,"ObjectsWithVersions":0},"SPFolder":{"Count":9,"TotalTime":1642,"AccumulatedVersions":0,"ObjectsWithVersions":0},"SPList":{"Count":1,"TotalTime":151,"AccumulatedVersions":0,"ObjectsWithVersions":0},"SPDocumentLibrary":{"Count":2,"TotalTime":186,"AccumulatedVersions":0,"ObjectsWithVersions":0},"SPFile":{"Count":5,"TotalTime":1994,"AccumulatedVersions":0,"ObjectsWithVersions":0},"SPListItem":{"Count":11,"TotalTime":2006,"AccumulatedVersions":0,"ObjectsWithVersions":0},"DeploymentRoles":{"Count":1,"TotalTime":188,"AccumulatedVersions":0,"ObjectsWithVersions":0},"DeploymentRoleAssignments":{"Count":1,"TotalTime":799,"AccumulatedVersions":0,"ObjectsWithVersions":0}}
+        TotalExpectedBytes:0
+        CorrelationId:06389c9e-907e-0000-b2f7-acb712e4bfe2
+

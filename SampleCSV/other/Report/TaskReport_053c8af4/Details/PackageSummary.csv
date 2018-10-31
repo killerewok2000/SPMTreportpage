@@ -1,0 +1,3 @@
+﻿IncRound,Packed,Uploaded,Re-uploaded,Submitted,Re-submitted,Job succeed,Job failed with uploading failure,Job failed with submitting failure,Job failed with JobEnd,Job cancelled,Job failed and deleted,Job failed with fatal error,Job failed with timeout,Job failed with exception,Unknown error
+R1,1,1,0,1,0,1,0,0,0,0,0,0,0,0,0
+R2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

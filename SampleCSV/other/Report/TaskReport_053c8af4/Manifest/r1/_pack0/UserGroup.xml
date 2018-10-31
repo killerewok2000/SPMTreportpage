@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserGroupMap xmlns="urn:deployment-usergroupmap-schema">
+  <Users>
+    <User Id="2" Name="System Account" Login="SHAREPOINT\system" IsSiteAdmin="false" SystemId="" IsDeleted="false" IsDomainGroup="false" />
+    <User Id="4" Name="spfarm-sp\spadmin" Login="i:0#.w|spfarm-sp\spadmin" IsSiteAdmin="false" SystemId="cy0xLTUtMjEtNjc5NjY5NTgzLTE2NDQxNjE1MjgtMTQ0NjA4MzUwOC01MDA=" IsDeleted="true" IsDomainGroup="false" />
+    <User Id="5" Name="spfarm-sp\simon" Login="i:0#.w|spfarm-sp\simon" IsSiteAdmin="false" SystemId="cy0xLTUtMjEtNjc5NjY5NTgzLTE2NDQxNjE1MjgtMTQ0NjA4MzUwOC0xMDA1" IsDeleted="true" IsDomainGroup="false" />
+    <User Id="9" Name="CONTOSO\spadmin" Login="i:0#.w|contoso\spadmin" IsSiteAdmin="false" SystemId="cy0xLTUtMjEtMzkyMjY3MzU4MC0yNzQ5ODM3MTIyLTY5Mjk3MzEwMC01MDA=" IsDeleted="true" IsDomainGroup="false" />
+    <User Id="14" Name="spfarm-sp\spadmin" Login="i:0#.w|spfarm-sp\spadmin" IsSiteAdmin="false" SystemId="cy0xLTUtMjEtNjc5NjY5NTgzLTE2NDQxNjE1MjgtMTQ0NjA4MzUwOC01MDA=" IsDeleted="true" IsDomainGroup="false" />
+    <User Id="15" Name="spfarm-sp\simon" Login="i:0#.w|spfarm-sp\simon" IsSiteAdmin="false" SystemId="cy0xLTUtMjEtNjc5NjY5NTgzLTE2NDQxNjE1MjgtMTQ0NjA4MzUwOC0xMDA1" IsDeleted="true" IsDomainGroup="false" />
+    <User Id="16" Name="spfarm-sp\spadmin" Login="i:0#.w|spfarm-sp\spadmin" IsSiteAdmin="false" SystemId="cy0xLTUtMjEtNjc5NjY5NTgzLTE2NDQxNjE1MjgtMTQ0NjA4MzUwOC01MDA=" IsDeleted="true" IsDomainGroup="false" />
+    <User Id="17" Name="spfarm-sp\spadmin" Login="i:0#.w|spfarm-sp\spadmin" IsSiteAdmin="false" SystemId="cy0xLTUtMjEtNjc5NjY5NTgzLTE2NDQxNjE1MjgtMTQ0NjA4MzUwOC01MDA=" IsDeleted="true" IsDomainGroup="false" />
+  </Users>
+  <Groups>
+    <Group Id="1" Name="Excel Services Viewers" Description="Members of this group can view pages, list items, and documents.  If the document has a server rendering available, they can only view the document using the server rendering." Owner="2" OwnerIsUser="true" OnlyAllowMembersViewMembership="true" AllowMembersEditMembership="false" AllowRequestToJoinLeave="false" AutoAcceptRequestToJoinLeave="false" />
+    <Group Id="3" Name="Poll Team Owners" Description="Use this group to grant people full control permissions to the SharePoint site: Poll Team" Owner="3" OwnerIsUser="false" OnlyAllowMembersViewMembership="false" RequestToJoinLeaveEmailSetting="" AllowMembersEditMembership="false" AllowRequestToJoinLeave="false" AutoAcceptRequestToJoinLeave="false">
+      <Member UserId="4" />
+      <Member UserId="5" />
+    </Group>
+    <Group Id="6" Name="This is my special secret group" Description="" Owner="5" OwnerIsUser="true" OnlyAllowMembersViewMembership="true" AllowMembersEditMembership="false" AllowRequestToJoinLeave="false" AutoAcceptRequestToJoinLeave="false">
+      <Member UserId="5" />
+    </Group>
+    <Group Id="7" Name="Poll Team Visitors" Description="Use this group to grant people read permissions to the SharePoint site: Poll Team" Owner="3" OwnerIsUser="false" OnlyAllowMembersViewMembership="false" RequestToJoinLeaveEmailSetting="" AllowMembersEditMembership="false" AllowRequestToJoinLeave="false" AutoAcceptRequestToJoinLeave="false" />
+    <Group Id="8" Name="Poll Team Members" Description="Use this group to grant people contribute permissions to the SharePoint site: Poll Team" Owner="3" OwnerIsUser="false" OnlyAllowMembersViewMembership="false" RequestToJoinLeaveEmailSetting="" AllowMembersEditMembership="false" AllowRequestToJoinLeave="false" AutoAcceptRequestToJoinLeave="false">
+      <Member UserId="9" />
+    </Group>
+    <Group Id="10" Name="Poll Team Moderators" Description="Use this group to grant people moderate permissions to the SharePoint site: Poll Team" Owner="3" OwnerIsUser="false" OnlyAllowMembersViewMembership="true" AllowMembersEditMembership="false" AllowRequestToJoinLeave="false" AutoAcceptRequestToJoinLeave="false" />
+    <Group Id="11" Name="Records Center Web Service Submitters" Description="Members of this group can submit content to this site using Web Services." Owner="3" OwnerIsUser="false" OnlyAllowMembersViewMembership="true" AllowMembersEditMembership="false" AllowRequestToJoinLeave="false" AutoAcceptRequestToJoinLeave="false">
+      <Member UserId="2" />
+    </Group>
+    <Group Id="12" Name="Translation Managers" Description="Members of this group can translate pages, list items and documents in Variations." Owner="3" OwnerIsUser="false" OnlyAllowMembersViewMembership="true" AllowMembersEditMembership="false" AllowRequestToJoinLeave="false" AutoAcceptRequestToJoinLeave="false" />
+    <Group Id="13" Name="Records Center Web Service Submitters for Intern" Description="Members of this group can submit content to this site using Web Services." Owner="3" OwnerIsUser="false" OnlyAllowMembersViewMembership="true" AllowMembersEditMembership="false" AllowRequestToJoinLeave="false" AutoAcceptRequestToJoinLeave="false">
+      <Member UserId="2" />
+    </Group>
+  </Groups>
+</UserGroupMap>

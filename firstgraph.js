@@ -1,9 +1,12 @@
-var status = [0,0,0];
+var statusr = [0,0,0];
 
 var tempdata = null;
+var statusItemReport = [0,0,0,0];
+
 
 function resetstatus(data) { 
-    status = [0,0,0];
+    statusr = [0,0,0];
+    statusItemReport = [0,0,0,0];
 };
 
 $(document).ready(function() 
@@ -39,17 +42,34 @@ function upload(evt)
             var csvData = event.target.result;
             data = $.csv.toArrays(csvData);
             if (data && data.length > 0) {
-                //alert('Imported -' + data.length + '- rows successfully!');
-                var html = generateTable(data);
-                incrementstatus(data);
-                tasksBySizeChart(data);
-                setupgraph1(data);
+                //alert('Imported -' + data.length + '- rows successfully from  '+ file.name);
+                if(file.name.includes("SummaryReport"))
+                {
+                    
+                    var html = generateTable(data);
+                    incrementstatus(data);
+                    tasksBySizeChart(data);
+                    setupgraph1(data);
+                    $('#result2').empty();
+                    $('#result2').html(html);
+                    
+                    //average throughput
+                    $('#throughput').html(generateAvgThroughput(data))
+                }
+                if(file.name.includes("ItemReport"))
+                {
+                    var html = generateTable(data)
+                    incrementstatusItemReport(data);
+                    setupitemReport(data);
+                    $('#result2').empty();
+                    $('#result2').html(html);
 
-                $('#result2').empty();
-                $('#result2').html(html);
-                
-                //average throughput
-                $('#throughput').html(generateAvgThroughput(data));
+                }
+               
+               
+               
+               
+                ;
             } else {
                 alert('No data to import!');
             }
@@ -69,19 +89,40 @@ function incrementstatus(data) {
         
         if( data[row][2]== 'Failed')
          {
-             status[2]++;
+            statusr[2]++;
          }
          if(data[row][2]== 'In progress')
          {
-             status[1]++ ;
+            statusr[1]++ ;
          }
          if(data[row][2]== 'Completed')
          {
-             status[0]++ ;
+            statusr[0]++ ;
          }
 }
 };
+function incrementstatusItemReport(data) {
 
+    for(var row in data) {
+        
+        if( data[row][6]== 'Failed')
+         {
+            statusItemReport[2]++;
+         }
+         if(data[row][6]== 'In progress')
+         {
+            statusItemReport[1]++ ;
+         }
+         if(data[row][6]== 'Migrated')
+         {
+            statusItemReport[0]++ ;
+         }
+         if(data[row][6]== 'Scan Finished')
+         {
+            statusItemReport[3]++ ;
+         }
+}
+};
 
 function tasksBySizeChart(data) {
 
@@ -131,10 +172,43 @@ function tasksBySizeChart(data) {
 
 
 //function to setup graph of Status
-function setupgraph1() {
+function setupitemReport() {
     //variable for status Completed,In progress, Failed
     
    
+
+        //html += '<tr>\r\n';
+       // for(var item in data[row]) {
+         // html += '<td>' + data[row][item] + '</td>\r\n';
+        //}
+        //html += '</tr>\r\n';
+    
+      //alert('successcount ' + status[0] + ' in progress '+ status[1] +' successcount '+ status[2]);
+      var ctx2 = document.getElementById("ItemReportStatus").getContext('2d');
+      var ItemREportStatus = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: ["Completed", "In progress", "Failed", "Scanned"],
+            datasets: [{
+                label: "Status of Tasks",
+                backgroundColor: ['#0078d4','#71afe5' ,'#a80000','#71afe5'],
+                borderColor: ['#0078d4','#71afe5' ,'#a80000', '#71afe5'],
+                data: statusItemReport,
+            }]
+        },
+        options: {}
+    });
+      
+      
+      
+
+
+};
+
+function setupgraph1() {
+    //variable for status Completed,In progress, Failed
+    
+  
 
         //html += '<tr>\r\n';
        // for(var item in data[row]) {
@@ -152,7 +226,7 @@ function setupgraph1() {
                 label: "Status of Tasks",
                 backgroundColor: ['#0078d4','#71afe5' ,'#a80000'],
                 borderColor: ['#0078d4','#71afe5' ,'#a80000'],
-                data: status,
+                data: statusr,
             }]
         },
         options: {}
@@ -170,7 +244,7 @@ function setupgraph1() {
                   label: "Status of Tasks",
                   backgroundColor: '#0078d4',
                   borderColor: '#0078d4',
-                  data: status,
+                  data: statusr,
               }]
           },
       

@@ -27,29 +27,29 @@ var uploadFile = function(file, path) {
     } 
     else 
     {
-        var data = null;
-        var file = evt.target.files[0];
+        var dataupload = null;
+        var fileupload = file.target.files[0];
         var reader = new FileReader();
-        reader.readAsText(file);
+        reader.readAsText(fileupload);
         reader.onload = function(event) {
             var csvData = event.target.result;
-            data = $.csv.toArrays(csvData);
-            if (data && data.length > 0) {
-                alert('Imported -' + data.length + '- rows successfully!');
-                var html = generateTable(data);
-                setupgraph1(data);
+            dataupload = $.csv.toArrays(csvData);
+            if (dataupload && dataupload.length > 0) {
+                alert('Imported -' + dataupload.length + '- rows successfully!');
+                var html = generateTable(dataupload);
+                setupgraph1(dataupload);
                 
                 $('#result2').empty();
                 $('#result2').html(html);
                 
                 //average throughput
-                $('#throughput').html(generateAvgThroughput(data));
+                $('#throughput').html(generateAvgThroughput(dataupload));
             } else {
                 alert('No data to import!');
             }
         };
         reader.onerror = function() {
-            alert('Unable to read ' + file.fileName);
+            alert('Unable to read ' + fileupload.fileName);
         };
     }
 };

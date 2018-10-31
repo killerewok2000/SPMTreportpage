@@ -17,9 +17,9 @@ function browserSupportFileUpload() {
     return isCompatible;
 };
 
-var uploadFile = function(file, path) {
+function uploadSummaryReport(evt) 
+{
     alert('uploaded' +  path + "/" + file.name );
-    // handle file uploading
     //alert('upload action');
     if (!browserSupportFileUpload()) 
     {
@@ -27,12 +27,47 @@ var uploadFile = function(file, path) {
     } 
     else 
     {
+        var data = null;
+        var file = evt.target.files[0];
+        var reader = new FileReader();
+        reader.readAsText(file);
+        reader.onload = function(event) {
+            var csvData = event.target.result;
+            data = $.csv.toArrays(csvData);
+            if (data && data.length > 0) {
+                //alert('Imported -' + data.length + '- rows successfully!');
+                var html = generateTable(data);
+                incrementstatus(data);
+                setupgraph1(data);
+                $('#result2').empty();
+                $('#result2').html(html);
+                
+                //average throughput
+                $('#throughput').html(generateAvgThroughput(data));
+            } else {
+                alert('No data to import!');
+            }
+        };
+        reader.onerror = function() {
+            alert('Unable to read ' + file.fileName);
+        };
+    }
+    
+};
+
+var uploadFile = function(file, path) {
+    alert('uploaded' +  path + "/" + file.name );
+    // handle file uploading
+    //alert('upload action');
+    
         var dataupload = null;
-        var fileupload = file.target.files[0];
+        var fileupload = file.file[0];
+        alert(fileupload);
         var reader = new FileReader();
         reader.readAsText(fileupload);
+        
         reader.onload = function(event) {
-            alert('Reading');
+        alert('Reading2');
             var csvData = event.target.result;
             dataupload = $.csv.toArrays(csvData);
             if (dataupload && dataupload.length > 0) {
@@ -52,8 +87,8 @@ var uploadFile = function(file, path) {
         reader.onerror = function() {
             alert('Unable to read ' + fileupload.fileName);
         };
-    }
-};
+    };
+
 
 // The event listener for the file upload
 document.addEventListener('DOMContentLoaded', function(event) {
@@ -95,6 +130,16 @@ document.addEventListener('DOMContentLoaded', function(event) {
                     });
                 } else {
                     if(filesAndDirs[i].name.includes("SummaryReport"))
+                    {
+                    //alert("trying to upload"+ filesAndDirs[i]);    
+                    uploadSummaryReport(filesAndDirs[i]);
+                    }
+                    if(filesAndDirs[i].name.includes("ItemReport"))
+                    {
+                    //alert("trying to upload"+ filesAndDirs[i]);    
+                    uploadFile(filesAndDirs[i], path);
+                    }
+                    if(filesAndDirs[i].name.includes("ItemReport"))
                     {
                     //alert("trying to upload"+ filesAndDirs[i]);    
                     uploadFile(filesAndDirs[i], path);

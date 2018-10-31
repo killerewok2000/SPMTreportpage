@@ -4,12 +4,12 @@ var tempdata = null;
 var statusItemReport = [0,0,0,0];
 
 
-function resetstatus(data) { 
+function resetstatusD(data) { 
     status = [0,0,0];
     statusItemReport = [0,0,0,0];
 };
 
-function toggleDisplay(id) {
+function toggleDisplayD(id) {
     var el = document.getElementById(id);
 
     el.style.display = el.style.display === 'block' ? 'none' : 'block';
@@ -47,19 +47,19 @@ function uploadReport(evt)
                 {
                     
                     var html = generateTable(data);
-                    incrementstatus(data);
-                    setupgraph1(data);
+                    incrementstatusD(data);
+                    setupgraph1D(data);
                     $('#result2').empty();
                     $('#result2').html(html);
                     
                     //average throughput
-                    $('#throughput').html(generateAvgThroughput(data))
+                    $('#throughput').html(generateAvgThroughputD(data))
                 }
                 if(file.name.includes("ItemReport"))
                 {
-                    var html = generateTable(data)
-                    incrementstatusItemReport(data);
-                    setupitemReport(data);
+                    var html = generateTableD(data)
+                    incrementstatusItemReportD(data);
+                    setupitemReportD(data);
                     $('#result2').empty();
                     $('#result2').html(html);
 
@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 
 
-function incrementstatus(data) {
+function incrementstatusD(data) {
 
     for(var row in data) {
         
@@ -203,7 +203,7 @@ function incrementstatus(data) {
          }
 }
 };
-function incrementstatusItemReport(data) {
+function incrementstatusItemReportD(data) {
 
     for(var row in data) {
         
@@ -230,7 +230,7 @@ function incrementstatusItemReport(data) {
 
 
 //function to setup graph of Status
-function setupitemReport() {
+function setupitemReportD() {
     //variable for status Completed,In progress, Failed
     
    
@@ -263,7 +263,7 @@ function setupitemReport() {
 
 };
 
-function setupgraph1() {
+function setupgraph1D() {
     //variable for status Completed,In progress, Failed
     
    
@@ -315,7 +315,7 @@ function setupgraph1() {
 };
 
 //for building table
-function generateTable(data) {
+function generateTableD(data) {
     var html = '';
     if(typeof(data[0]) === 'undefined') {
       return null;
@@ -349,7 +349,7 @@ function generateTable(data) {
     return html;
   };
   
-function generateAvgThroughput(data) {
+function generateAvgThroughputD(data) {
     var html = '';
     if(typeof(data[0]) === 'undefined') {
         return null;

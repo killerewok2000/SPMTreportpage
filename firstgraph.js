@@ -1,11 +1,11 @@
-var status = [0,0,0];
+var statusr = [0,0,0];
 
 var tempdata = null;
 var statusItemReport = [0,0,0,0];
 
 
 function resetstatus(data) { 
-    status = [0,0,0];
+    statusr = [0,0,0];
     statusItemReport = [0,0,0,0];
 };
 
@@ -88,15 +88,15 @@ function incrementstatus(data) {
         
         if( data[row][2]== 'Failed')
          {
-             status[2]++;
+            statusr[2]++;
          }
          if(data[row][2]== 'In progress')
          {
-             status[1]++ ;
+            statusr[1]++ ;
          }
          if(data[row][2]== 'Completed')
          {
-             status[0]++ ;
+            statusr[0]++ ;
          }
 }
 };
@@ -163,7 +163,7 @@ function setupitemReport() {
 function setupgraph1() {
     //variable for status Completed,In progress, Failed
     
-   
+  
 
         //html += '<tr>\r\n';
        // for(var item in data[row]) {
@@ -181,7 +181,7 @@ function setupgraph1() {
                 label: "Status of Tasks",
                 backgroundColor: ['#0078d4','#71afe5' ,'#a80000'],
                 borderColor: ['#0078d4','#71afe5' ,'#a80000'],
-                data: status,
+                data: statusr,
             }]
         },
         options: {}
@@ -199,7 +199,7 @@ function setupgraph1() {
                   label: "Status of Tasks",
                   backgroundColor: '#0078d4',
                   borderColor: '#0078d4',
-                  data: status,
+                  data: statusr,
               }]
           },
       

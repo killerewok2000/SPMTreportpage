@@ -1,5 +1,13 @@
-//  [Migrated, failed, scanned, ]
-var filecount = [0,0,0];
+var status = [0,0,0];
+
+var tempdata = null;
+var statusItemReport = [0,0,0,0];
+
+
+function resetstatus(data) { 
+    status = [0,0,0];
+    statusItemReport = [0,0,0,0];
+};
 
 function toggleDisplay(id) {
     var el = document.getElementById(id);
@@ -17,9 +25,8 @@ function browserSupportFileUpload() {
     return isCompatible;
 };
 
-function uploadSummaryReport(evt) 
+function uploadReport(evt) 
 {
-    alert('uploaded' +  path + "/" + file.name );
     //alert('upload action');
     if (!browserSupportFileUpload()) 
     {
@@ -27,26 +34,41 @@ function uploadSummaryReport(evt)
     } 
     else 
     {
-        
         var data = null;
-        alert(evt.getAsText());
         var file = evt.target.files[0];
         var reader = new FileReader();
         reader.readAsText(file);
-        alert(file.getAsText());
         reader.onload = function(event) {
             var csvData = event.target.result;
             data = $.csv.toArrays(csvData);
             if (data && data.length > 0) {
-                //alert('Imported -' + data.length + '- rows successfully!');
-                var html = generateTable(data);
-                incrementstatus(data);
-                setupgraph1(data);
-                $('#result2').empty();
-                $('#result2').html(html);
-                
-                //average throughput
-                $('#throughput').html(generateAvgThroughput(data));
+                //alert('Imported -' + data.length + '- rows successfully from  '+ file.name);
+                if(file.name.includes("SummaryReport"))
+                {
+                    
+                    var html = generateTable(data);
+                    incrementstatus(data);
+                    setupgraph1(data);
+                    $('#result2').empty();
+                    $('#result2').html(html);
+                    
+                    //average throughput
+                    $('#throughput').html(generateAvgThroughput(data))
+                }
+                if(file.name.includes("ItemReport"))
+                {
+                    var html = generateTable(data)
+                    incrementstatusItemReport(data);
+                    setupitemReport(data);
+                    $('#result2').empty();
+                    $('#result2').html(html);
+
+                }
+               
+               
+               
+               
+                ;
             } else {
                 alert('No data to import!');
             }
@@ -135,12 +157,13 @@ document.addEventListener('DOMContentLoaded', function(event) {
                     if(filesAndDirs[i].name.includes("SummaryReport"))
                     {
                     //alert("trying to upload"+ filesAndDirs[i]);    
-                    uploadSummaryReport(filesAndDirs[i]);
+                    uploadReport(filesAndDirs[i]);
                     }
                     if(filesAndDirs[i].name.includes("ItemReport"))
                     {
                     //alert("trying to upload"+ filesAndDirs[i]);    
-                    uploadFile(filesAndDirs[i], path);
+                    //uploadFile(filesAndDirs[i], path);
+                    uploadReport(filesAndDirs[i]);
                     }
                     
                     //alert("trying to upload"+ filesAndDirs[i]);
@@ -162,30 +185,95 @@ document.addEventListener('DOMContentLoaded', function(event) {
 
 
 
-//function to setup graph of Status
-function setupgraph1(data) {
-    //variable for status Completed,In progress, Failed
-    var status = [0,0,0]; 
+function incrementstatus(data) {
+
     for(var row in data) {
-       if( data[row][2]== 'Failed')
-        {
-            status[2]++;
-        }
-        if(data[row][2]== 'In progress')
-        {
-            status[1]++ ;
-        }
-        if(data[row][2]== 'Completed')
-        {
-            status[0]++ ;
-        }
+        
+        if( data[row][2]== 'Failed')
+         {
+             status[2]++;
+         }
+         if(data[row][2]== 'In progress')
+         {
+             status[1]++ ;
+         }
+         if(data[row][2]== 'Completed')
+         {
+             status[0]++ ;
+         }
+}
+};
+function incrementstatusItemReport(data) {
+
+    for(var row in data) {
+        
+        if( data[row][6]== 'Failed')
+         {
+            statusItemReport[2]++;
+         }
+         if(data[row][6]== 'In progress')
+         {
+            statusItemReport[1]++ ;
+         }
+         if(data[row][6]== 'Migrated')
+         {
+            statusItemReport[0]++ ;
+         }
+         if(data[row][6]== 'Scan Finished')
+         {
+            statusItemReport[3]++ ;
+         }
+}
+};
+
+
+
+
+//function to setup graph of Status
+function setupitemReport() {
+    //variable for status Completed,In progress, Failed
+    
+   
 
         //html += '<tr>\r\n';
        // for(var item in data[row]) {
          // html += '<td>' + data[row][item] + '</td>\r\n';
         //}
         //html += '</tr>\r\n';
-    }
+    
+      //alert('successcount ' + status[0] + ' in progress '+ status[1] +' successcount '+ status[2]);
+      var ctx2 = document.getElementById("ItemReportStatus").getContext('2d');
+      var ItemREportStatus = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: ["Completed", "In progress", "Failed", "Scanned"],
+            datasets: [{
+                label: "Status of Tasks",
+                backgroundColor: ['#0078d4','#71afe5' ,'#a80000','#71afe5'],
+                borderColor: ['#0078d4','#71afe5' ,'#a80000', '#71afe5'],
+                data: statusItemReport,
+            }]
+        },
+        options: {}
+    });
+      
+      
+      
+
+
+};
+
+function setupgraph1() {
+    //variable for status Completed,In progress, Failed
+    
+   
+
+        //html += '<tr>\r\n';
+       // for(var item in data[row]) {
+         // html += '<td>' + data[row][item] + '</td>\r\n';
+        //}
+        //html += '</tr>\r\n';
+    
       //alert('successcount ' + status[0] + ' in progress '+ status[1] +' successcount '+ status[2]);
       var ctx = document.getElementById("piechartStatus").getContext('2d');
       var piechartStatus = new Chart(ctx, {
@@ -222,6 +310,7 @@ function setupgraph1(data) {
           options: {}
       });
       
+
 
 };
 

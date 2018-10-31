@@ -1,0 +1,15 @@
+﻿Setting,Value
+Enable incremental migration,True
+User mapping file,
+Use custom Azure storage,False
+Migrate file version history,True
+Keep all versions,True
+Filter out created date before,
+Filter out modified date before,
+Filter out files with extensions,old
+Azure Active Directory lookup,True
+Preserve user permission for SharePoint Server,True
+Preserve user permission for File Share,False
+Filter out files and folders with invalid characters,False
+Filter out hidden files,False
+Migrate OneNote folder as OneNote notebook,False

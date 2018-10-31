@@ -35,7 +35,7 @@ function uploadReport(evt)
     else 
     {
         var data = null;
-        var file = evt.target.files[0];
+        var file = evt;
         var reader = new FileReader();
         reader.readAsText(file);
         reader.onload = function(event) {

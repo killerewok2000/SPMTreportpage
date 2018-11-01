@@ -12,6 +12,9 @@ function resetstatus(data) {
 $(document).ready(function() 
 {
 
+    $(".summary").hide();
+    $(".item").hide();
+    
 // The event listener for the file upload
 document.getElementById('txtFileUpload').addEventListener('change', upload, false);
 
@@ -42,6 +45,9 @@ function upload(evt)
             var csvData = event.target.result;
             data = $.csv.toArrays(csvData);
             if (data && data.length > 0) {
+                var summaryContext = false;
+                var itemContext = false;
+
                 //alert('Imported -' + data.length + '- rows successfully from  '+ file.name);
                 if(file.name.includes("SummaryReport"))
                 {
@@ -55,6 +61,8 @@ function upload(evt)
                     
                     //average throughput
                     $('#throughput').html(generateAvgThroughput(data))
+
+                    summaryContext = true;
                 }
                 if(file.name.includes("ItemReport"))
                 {
@@ -64,9 +72,10 @@ function upload(evt)
                     $('#result2').empty();
                     $('#result2').html(html);
 
+                    itemContext = true;
                 }
                
-               
+               setPageContext(summaryContext, itemContext);
                
                
                 ;
@@ -82,6 +91,12 @@ function upload(evt)
 };
 }); 
 
+function setPageContext(summaryContext, itemContext) {
+
+    if(summaryContext) $(".summary").show();
+    if(itemContext) $(".item").show();
+
+}
 
 function incrementstatus(data) {
 

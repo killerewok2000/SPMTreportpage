@@ -219,7 +219,7 @@ function tasksByTimeChart(data) {
         // minutes are worth 60 seconds. Hours are worth 60 minutes.
         var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
 
-        timeData[0][row] = seconds/60;
+        timeData[0][row] = (seconds/60).toFixed(2);
         timeData[1][row] = data2[row][0];
         timeData[2][row] = data2[row][15];
     }

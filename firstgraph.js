@@ -14,7 +14,7 @@ $(document).ready(function()
 
     $(".summary").hide();
     $(".item").hide();
-    
+
 // The event listener for the file upload
 document.getElementById('txtFileUpload').addEventListener('change', upload, false);
 
@@ -55,12 +55,14 @@ function upload(evt)
                     var html = generateTable(data);
                     incrementstatus(data);
                     tasksBySizeChart(data);
+                    
                     setupgraph1(data);
                     $('#result2').empty();
                     $('#result2').html(html);
                     
                     //average throughput
                     $('#throughput').html(generateAvgThroughput(data))
+                    $('#filesStatus').html(generateFilesStatus(data));
 
                     summaryContext = true;
                 }
@@ -184,6 +186,22 @@ function tasksBySizeChart(data) {
 
 }
 
+
+function generateFilesStatus(data) {
+
+    var filesFound = 0;
+    var filesReady = 0;
+    var filesMigrated = 0;
+
+    for (var row in data) {
+        if (row==0) continue;
+        filesFound += parseInt(data[row][8]);
+        filesReady += parseInt(data[row][9]);
+        filesMigrated += parseInt(data[row][10]);
+    }
+
+    return(filesFound + " files found<br/>" + filesReady + " files ready<br/>" + filesMigrated + " files migrated");
+}
 
 
 //function to setup graph of Status

@@ -55,6 +55,7 @@ function upload(evt)
                     var html = generateTable(data);
                     incrementstatus(data);
                     tasksBySizeChart(data);
+                    tasksByTimeChart(data);
                     
                     setupgraph1(data);
                     $('#result2').empty();
@@ -176,6 +177,70 @@ function tasksBySizeChart(data) {
                   backgroundColor: '#0078d4',
                   borderColor: '#0078d4',
                   data: sizeData[0],
+              }]
+          },
+      
+          // Configuration options go here
+          options: {}
+      });
+
+
+}
+
+
+function tasksByTimeChart(data) {
+
+    var data2 = data.slice(0);
+    data2.sort(function(a,b){
+        var timeStrA = a[15];
+        var ta = timeStrA.split(':'); // split it at the colons
+        // minutes are worth 60 seconds. Hours are worth 60 minutes.
+        var secondsA = (+ta[0]) * 60 * 60 + (+ta[1]) * 60 + (+ta[2]); 
+
+        var timeStrB = b[15];
+        var tb = timeStrB.split(':'); // split it at the colons
+        // minutes are worth 60 seconds. Hours are worth 60 minutes.
+        var secondsB = (+tb[0]) * 60 * 60 + (+tb[1]) * 60 + (+tb[2]); 
+        return secondsB - secondsA;
+    });
+
+    var timeData = [];
+    timeData[0] = [];
+    timeData[1] = []; 
+    timeData[2] = [];
+
+    for(var row in data2) {
+        if (row==0) continue;
+        if (row>10) break;
+        //if (!timeData[0][row]) timeData[0][row] = 0;
+
+        var timeStr = data2[row][15];
+        var a = timeStr.split(':'); // split it at the colons
+        // minutes are worth 60 seconds. Hours are worth 60 minutes.
+        var seconds = (+a[0]) * 60 * 60 + (+a[1]) * 60 + (+a[2]); 
+
+        timeData[0][row] = seconds;
+        timeData[1][row] = data2[row][0];
+        timeData[2][row] = data2[row][15];
+    }
+
+    timeData[0] = timeData[0].slice(1);
+    timeData[1] = timeData[1].slice(1);
+    timeData[2] = timeData[2].slice(1);
+
+    var ctx = document.getElementById("tasksByTime").getContext('2d');
+      var chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: 'bar',
+      
+          // The data for our dataset
+          data: {
+              labels: timeData[1],
+                datasets: [{
+                  label: "Task time",
+                  backgroundColor: '#0078d4',
+                  borderColor: '#0078d4',
+                  data: timeData[0],
               }]
           },
       

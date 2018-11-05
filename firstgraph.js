@@ -72,7 +72,7 @@ function upload(evt)
                     var html = generateTable(data)
                     incrementstatusItemReport(data);
                     setupitemReport(data);
-                    itemsByStatus(data);
+                    itemsByStatusAndType(data);
                     $('#result2').empty();
                     $('#result2').html(html);
 
@@ -143,24 +143,38 @@ function incrementstatusItemReport(data) {
 }
 };
 
-function itemsByStatus(data) {
+function itemsByStatusAndType(data) {
 
     var statusData = [];
     statusData[0] = [];
     statusData[1] = [];
 
+    var typeData = [];
+    typeData[0] = [];
+    typeData[1] = [];
+
     var index = [];
+    var index2 = [];
 
     for (var row in data) {
         if (row==0) continue;
-        var msg = data[row][8];
         
+        //gather all messages and increment counters
+        var msg = data[row][8];
         if (!index[msg]) {
             index[msg] = 0;
         }
         index[msg]++;
+
+        //gather all types and increment counters
+        var fileType = data[row][3];
+        if (!index2[fileType]) {
+            index2[fileType] = 0;
+        }
+        index2[fileType]++;
     }
 
+    //messages
     var pos = 0;
     for(var row in index) {
         statusData[0][pos] = row;
@@ -168,16 +182,71 @@ function itemsByStatus(data) {
         pos++;
     }
 
+    //file types
+    pos = 0;
+    for(var row in index2) {
+        typeData[0][pos] = row;
+        typeData[1][pos] = index2[row];
+        pos++;
+    }
+
+    //sort messages
+    var sortId = 0;
+    var sortOrder = [];
+    statusData[1].sort(function(a,b) {
+        var result = (b-a);
+        sortOrder[sortId] = result;
+        sortId++;
+        return result;
+    });
+
+    sortId=0;
+    statusData[0].sort(function(a,b) {
+        return sortOrder[sortId++];
+    });
+
+    //sort file types
+    sortId = 0;
+    sortOrder = [];
+    typeData[1].sort(function(a,b) {
+        var result = (b-a);
+        sortOrder[sortId] = result;
+        sortId++;
+        return result;
+    });
+
+    sortId=0;
+    typeData[0].sort(function(a,b) {
+        return sortOrder[sortId++];
+    });
+
+    //items by status message chart
     var ctx2 = document.getElementById("ItemDetails").getContext('2d');
       var ItemREportStatus = new Chart(ctx2, {
         type: 'horizontalBar',
         data: {
             labels: statusData[0],
             datasets: [{
-                label: "Status of Tasks",
+                label: "Status messages",
                 backgroundColor: ['#004578', '#005a9e', '#106ebe', '#0078d4', '#2b88d8', '#71afe5', '#c7e0f4', '#deecf9', '#eff6fc'],
                 borderColor: ['#004578', '#005a9e', '#106ebe', '#0078d4', '#2b88d8', '#71afe5', '#c7e0f4', '#deecf9', '#eff6fc'],
                 data: statusData[1],
+            }]
+        },
+        options: {}
+    });
+
+    //items by file type chart
+    var ctx3 = document.getElementById("ItemFileTypes").getContext('2d');
+      var ItemREportStatus = new Chart(ctx3, {
+        type: 'horizontalBar',
+        data: {
+            labels: typeData[0],
+            datasets: [{
+                label: "File types",
+                backgroundColor: ['#004578', '#005a9e', '#106ebe', '#0078d4', '#2b88d8', '#71afe5', '#c7e0f4', '#deecf9', '#eff6fc'],
+                borderColor: ['#004578', '#005a9e', '#106ebe', '#0078d4', '#2b88d8', '#71afe5', '#c7e0f4', '#deecf9', '#eff6fc'],
+                data: typeData[1],
             }]
         },
         options: {}

@@ -72,6 +72,7 @@ function upload(evt)
                     var html = generateTable(data)
                     incrementstatusItemReport(data);
                     setupitemReport(data);
+                    itemsByStatus(data);
                     $('#result2').empty();
                     $('#result2').html(html);
 
@@ -141,6 +142,47 @@ function incrementstatusItemReport(data) {
          }
 }
 };
+
+function itemsByStatus(data) {
+
+    var statusData = [];
+    statusData[0] = [];
+    statusData[1] = [];
+
+    var index = [];
+
+    for (var row in data) {
+        if (row==0) continue;
+        var msg = data[row][8];
+        
+        if (!index[msg]) {
+            index[msg] = 0;
+        }
+        index[msg]++;
+    }
+
+    var pos = 0;
+    for(var row in index) {
+        statusData[0][pos] = row;
+        statusData[1][pos] = index[row];
+        pos++;
+    }
+
+    var ctx2 = document.getElementById("ItemDetails").getContext('2d');
+      var ItemREportStatus = new Chart(ctx2, {
+        type: 'horizontalBar',
+        data: {
+            labels: statusData[0],
+            datasets: [{
+                label: "Status of Tasks",
+                backgroundColor: ['#004578', '#005a9e', '#106ebe', '#0078d4', '#2b88d8', '#71afe5', '#c7e0f4', '#deecf9', '#eff6fc'],
+                borderColor: ['#004578', '#005a9e', '#106ebe', '#0078d4', '#2b88d8', '#71afe5', '#c7e0f4', '#deecf9', '#eff6fc'],
+                data: statusData[1],
+            }]
+        },
+        options: {}
+    });
+}
 
 function tasksBySizeChart(data) {
 

@@ -458,7 +458,22 @@ function setupgraph1() {
           },
       
           // Configuration options go here
-          options: {}
+          options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        
+                    }
+                }],
+            }
+        }
       });
       
 
